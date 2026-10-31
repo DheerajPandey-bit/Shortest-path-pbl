@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shortest Path Optimizer</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <p class="eyebrow">ROUTE INTELLIGENCE</p>
+      <h1>Shortest Path Optimizer</h1>
+      <p class="sub">Enter places manually and compare routes by distance or estimated travel time.</p>
+    </div>
+    <span class="status"><i></i> Local C++ engine</span>
+  </header>
+
+  <main>
+    <section class="panel controls">
+      <h2>Plan your journey</h2>
+      <label for="source">Starting location</label>
+      <input id="source" type="text" placeholder="e.g. Graphic Era University, Dehradun" autocomplete="off">
+      <label for="destination">Destination</label>
+      <input id="destination" type="text" placeholder="e.g. Dehradun Railway Station" autocomplete="off">
+      <label for="mode">Optimization preference</label>
+      <select id="mode">
+        <option value="distance">Shortest distance</option>
+        <option value="time">Fastest travel time</option>
+      </select>
+      <label for="traffic">Traffic condition</label>
+      <select id="traffic">
+        <option value="low">Low traffic</option>
+        <option value="medium">Medium traffic</option>
+        <option value="high">High traffic</option>
+      </select>
+      <button id="findRoute">Find optimal route</button>
+      <p class="note">Place names are resolved using OpenStreetMap geocoding. For this prototype, each entered place is connected to its nearest node in the sample C++ road graph; this is not turn-by-turn routing or live traffic.</p>
+      <p id="message" role="status"></p>
+    </section>
+
+    <section class="map-wrap">
+      <div id="map"></div>
+      <div class="legend">
+        <span><i class="best-line"></i> Optimal route</span>
+        <span><i class="alt-line"></i> Alternative</span>
+      </div>
+    </section>
+
+    <section class="results">
+      <article class="panel result-card">
+        <p class="eyebrow">RECOMMENDED ROUTE</p>
+        <h2 id="bestDistance">—</h2>
+        <p id="bestTime">Enter two locations to begin.</p>
+        <p id="bestPath" class="path"></p>
+      </article>
+      <article class="panel result-card">
+        <p class="eyebrow">ALTERNATIVE ROUTE</p>
+        <h2 id="altDistance">—</h2>
+        <p id="altTime">A second route will appear when available.</p>
+        <p id="altPath" class="path"></p>
+      </article>
+    </section>
+  </main>
+
+  <footer>Prototype network • Sample road weights • OpenStreetMap map tiles and geocoding</footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
